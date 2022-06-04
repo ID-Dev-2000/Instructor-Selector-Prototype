@@ -27,7 +27,7 @@ h1 {
 .userCardClass {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: column;
 }
 
@@ -58,7 +58,10 @@ h1 {
     * {
         font-size: large;
     }
-.userDataModule, h1{
-    width: 60%;
-}
+    .userDataModule, h1{
+        width: 60%;
+    }
+    .userCardDynamicNode {
+        text-overflow: wrap;
+    }
 }

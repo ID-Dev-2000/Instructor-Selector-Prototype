@@ -1,4 +1,6 @@
+// Initialize DOM nodes
 let userCard = document.getElementById('userCard')
+let selectedUserFromOption = document.getElementById('selectUserID')
 
 // Fetch API data, return as JSON
 async function fetchPlaceholderUserData() {
@@ -7,29 +9,50 @@ async function fetchPlaceholderUserData() {
     return await fetchedDataAsJSON
 }
 
-// Handle Email functionality
-function submitInput() {
-    alert('test')
+// function to create populate DOM elements with API data
+async function instructorData(position) {
+    let userData = await fetchPlaceholderUserData()
+
+    let cardHTML = 
+    `
+    <p>Name: ${userData[position]['name']}</p>
+    <p>E-mail: ${userData[position]['email']}</p>
+    <p>Website: ${userData[position]['website']}
+    <p>Catch Phrase: ${userData[position]['company']['catchPhrase']}</p>
+    <hr style="width: 100%"/>
+    `
+    let createdNode = document.createElement('div')
+    createdNode.classList.add('userCardDynamicNode')
+    createdNode.innerHTML = cardHTML
+    userCard.appendChild(createdNode)
 }
 
-// Generate DOM nodes for user cards
-let selectedUserFromOption = document.getElementById('selectUserID')
-
-// TODO: Add images of instructors in user cards
 async function generateUserCard() {
-    let userData = await fetchPlaceholderUserData()
-    let selectedUser = selectedUserFromOption.options[selectedUserFromOption.selectedIndex].value;
-    if (selectedUserFromOption.options[selectedUserFromOption.selectedIndex].value == 'x') {
-        const cardHTML = `<p>Please select an instructor.</p>`
-        userCard.innerHTML = cardHTML
-    } else { 
-        const cardHTML =
-        `
-        <p>Name: ${userData[selectedUser]['name']}</p>
-        <p>E-mail: ${userData[selectedUser]['email']}</p>
-        <p>Catch Phrase: ${userData[selectedUser]['company']['catchPhrase']}</p>
-        <adress><a href=mailto${userData[selectedUser]['email']} target="_blank">CONTACT ME (Currently not functional during placeholder build)</address>
-        `
-        userCard.innerHTML = cardHTML
+    // Receives value from drop-down field
+    let selectedSubject = selectedUserFromOption.options[selectedUserFromOption.selectedIndex].value;
+
+    switch (selectedSubject) {
+        case 'subject-select':
+            userCard.innerHTML = "<p>Please select a subject.</p>"
+            break
+        case 'subject-science':
+            userCard.innerHTML = ''
+            instructorData(0)
+            instructorData(1)
+            instructorData(2)
+            break
+        case 'subject-mathematics':
+            userCard.innerHTML = ''
+            instructorData(3)
+            instructorData(4)
+            instructorData(5)
+            break
+        case 'subject-history':
+            userCard.innerHTML = ''
+            instructorData(6)
+            instructorData(7)
+            instructorData(8)
+            break
     }
+
 }

@@ -11,30 +11,17 @@
     <main>
     <h1>INSTRUCTOR PORTAL</h1>
     <div class="userDataModule">
-        <div class="subjectButtons" hidden> <!-- TODO: Add subjet seletors in the future --> <!-- Will likely need to use case/switch -->
-            <span>
-                <button>ONE</button>
-                <button>TWO</button>
-                <button>THREE</button>
-                <button>FOUR</button>
-            </span>
-        </div>
-        <select id="selectUserID" onchange="generateUserCard()">
-            <option value="x">SELECT INSTRUCTOR</option>
-            <option value="0">1 (Placeholder Value)</option>
-            <option value="1">2 (Placeholder Value)</option>
-            <option value="2">3 (Placeholder Value)</option>
-            <option value="3">4 (Placeholder Value)</option>
-            <option value="4">5 (Placeholder Value)</option>
-            <option value="5">6 (Placeholder Value)</option>
-            <option value="6">7 (Placeholder Value)</option>
-            <option value="7">8 (Placeholder Value)</option>
-            <option value="8">9 (Placeholder Value)</option>
-            <option value="9">10 (Placeholder Value)</option>
+        <select id="selectUserID" onchange="generateUserCard()"> <!-- Only JS in HTML file -->
+            <!-- set these to subject -->
+            <option value="subject-select" style="font-weight: bold;">SELECT SUBJECT</option>
+            <option value="subject-science">SCIENCE</option> 
+            <option value="subject-mathematics">MATHEMATICS</option>
+            <option value="subject-history">HISTORY</option>
         </select>
         <!-- Displays user data in DOM module -->
         <div class="userCardClass" id="userCard"></div>
     </div>
+    <p>*placeholder data*</p>
     </main>
     <script src="script.js"></script>
 </body>
